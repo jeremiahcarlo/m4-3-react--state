@@ -9,6 +9,13 @@ const Suggestion = ({
     isSelected,
     ...delegated
 }) => {
+    // Let's say the user has typed "Dea", and one of our matches is
+    // "Dear Girls". Here's what we want to do:
+    // - Wrap "Dea" in a span with no styling
+    // - Wrap "r Girls" in a span with strong styling
+    //
+    // To do this we need to find the index where the two should be
+    // split, to create two individual strings
     const matchIndex = suggestion.title
         .toLowerCase()
         .indexOf(searchValue.toLowerCase());
@@ -21,7 +28,7 @@ const Suggestion = ({
         <Wrapper
             className={isSelected ? 'selected' : undefined}
             id={`option-${suggestion.id}`}
-            
+            // These settings are important for accessibility
             role="option"
             aria-selected={isSelected}
             tabindex={-1}
