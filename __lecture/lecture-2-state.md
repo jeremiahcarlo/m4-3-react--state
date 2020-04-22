@@ -259,8 +259,8 @@ Lift state up in the following examples
 ---
 
 ```jsx live=true
-const Counter = () => {
-  const [count, setCount] = React.useState(0);
+const Counter = ({count, setCount}) => {
+  
 
   return (
     <>
@@ -272,11 +272,13 @@ const Counter = () => {
 };
 
 const App = () => {
+  const [count, setCount] = React.useState(0);
+  
   return (
     <>
-      The current count is: ???
+      <p>The current count is: {count}</p>
 
-      <Counter />
+      <Counter count={count} setCount={setCount} />
     </>
   )
 }
@@ -287,7 +289,7 @@ render(<App />)
 ---
 
 ```jsx live=true
-const FavouriteFood = () => {
+const FavouriteFood = (food, setFood) => {
   const [food, setFood] = React.useState('');
 
   return (
